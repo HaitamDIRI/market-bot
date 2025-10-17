@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b0d14;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      .card-outer {
+        background: radial-gradient(
+            1200px 800px at 10% 10%,
+            rgba(62, 69, 119, 0.25),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 90% 20%,
+            rgba(24, 26, 48, 0.8),
+            transparent 70%
+          ),
+          #0b0d14;
+      }
+      .pill-red {
+        background: rgba(189, 47, 56, 0.22);
+        border: 1px solid rgba(189, 47, 56, 0.35);
+      }
+      .pill-green {
+        background: rgba(34, 197, 94, 0.18);
+        border: 1px solid rgba(34, 197, 94, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="card"
+      class="card-outer w-[1900px] h-[1100px] rounded-[16px] p-6 text-white relative overflow-hidden bg-[url('/assets/icons/bg.png')] bg-cover bg-center"
+    >
+      <div
+        class="flex items-center gap-3 text-xl font-semibold justify-between"
+      >
+        <img
+          src="/assets/icons/logo.svg"
+          alt="BTC"
+          class="w-[222px] h-[78px] rounded-full opacity-80"
+        />
+        <h1
+          class="text-center text-[36px] font-[400] leading-[1]"
+          style="
+            background: linear-gradient(
+              219deg,
+              #fff 48.84%,
+              #65657c 115.29%,
+              #25232e 207.66%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Market Overview
+        </h1>
+        <div
+          class="flex items-center gap-2 bg-[] p-[12px_14px] rounded-full"
+          style="background: linear-gradient(274deg, #fff 51.36%, #999 148.17%)"
+        >
+          <span
+            class="text-[28px] font-[700] leading-[1]"
+            style="
+              background: linear-gradient(
+                219deg,
+                #000 48.84%,
+                #a1a1a2 107.62%,
+                #65657c 109.58%
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            <%= data.date %>
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 mt-6">
+        <div class="col-span-4 space-y-4">
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <img
+                  src="/assets/icons/mac.svg"
+                  alt="BTC"
+                  class="w-[70px] h-[70px] rounded-full"
+                />
+                <div class="text-[32px] font-[600] leading-[1] color-[#FFF]">
+                  Fear & Greed
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-4 flex items-center gap-2 rounded-full bg-[#131316] px-[20px] w-max"
+            >
+              <div class="text-[42px] font-[900] leading-[1] text-[#DD1F33]">
+                <%= data.fearGreed %>
+              </div>
+              <div
+                class="text-[42px] font-[900] leading-[1]"
+                style="color: rgba(199, 199, 215, 0.7)"
+              >
+                /100
+              </div>
+            </div>
+
+            <div
+              class="mt-4 rounded-full relative"
+              style="
+                background: #131316;
+                border: 4px solid rgba(58, 58, 68, 0.4);
+              "
+            >
+              <div class="grid grid-cols-4">
+                <div class="rounded-full bg-[#DD1F33] h-2"></div>
+                <div class="rounded-full bg-[#DF7700] h-2"></div>
+                <div class="rounded-full bg-[#96D424] h-2"></div>
+                <div class="rounded-full bg-[#2DB96A] h-2"></div>
+              </div>
+              <div
+                class="absolute top-[-13px] h-[31px] w-[31px] rounded-full border-4 border-[#FFF] bg-[#0E0E0E]"
+                style="left: <%= data.fearGreed %>%"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="flex items-center gap-2">
+              <img
+                src="/assets/icons/lines.svg"
+                alt="BTC"
+                class="w-[70px] h-[70px] rounded-full"
+              />
+              <div class="text-[32px] font-[600] leading-[1] color-[#FFF]">
+                Alt Season
+              </div>
+            </div>
+            <div
+              class="mt-4 flex items-center gap-2 rounded-full bg-[#131316] px-[20px] w-max"
+            >
+              <div class="text-[42px] font-[900] leading-[1] text-[#C5C5FF]">
+                <%= data.altSeason %>
+              </div>
+              <div
+                class="text-[42px] font-[900] leading-[1]"
+                style="color: rgba(199, 199, 215, 0.7)"
+              >
+                /100
+              </div>
+            </div>
+
+            <div
+              class="mt-3 h-[27px] rounded-full bg-[#131316] overflow-hidden p-1"
+              style="border: 5px solid rgba(58, 58, 68, 0.4)"
+            >
+              <div
+                class="h-full rounded-full bg-[#C5C5FF]"
+                style="width: <%= data.altSeason %>%"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            class="glass rounded-[31px] p-[38px] min-h-[253px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="text-[32px] font-[600] leading-[1] color-[#FFF]">
+              AI Analysis
+            </div>
+            <% if (data.aiAnalysis) { %> <% function formatAiText(raw) { try {
+            var normalized = String(raw) .replace(/\u00A0/g, ' ')
+            .replace(/\s+/g, ' ') .replace(/[;；]+\s*/g, '. ') .trim(); var
+            sentences = normalized.match(/[^.!?]+[.!?]?/g) || []; var lines =
+            sentences .map(function (s) { s = s.trim(); if (!s) return ''; var
+            firstIdx = s.search(/\S/); if (firstIdx >= 0) { s = s.slice(0,
+            firstIdx) + s[firstIdx].toUpperCase() + s.slice(firstIdx + 1); } if
+            (!/[.!?]$/.test(s)) s += '.'; return s; }) .filter(function (s) {
+            return s.length > 0; }); return lines.join('\n'); } catch (e) {
+            return raw; } } %>
+            <p
+              class="text-[20px] font-[400] leading-6 text-[#E7E7F0] whitespace-pre-line"
+            >
+              <%= formatAiText(data.aiAnalysis) %>
+            </p>
+            <% } else { %>
+            <p class="text-sm opacity-70 leading-6">
+              AI summary is loading or unavailable.
+            </p>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="col-span-4 space-y-4">
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="text-[28px] font-[400] leading-[1] color-[#C7C7D7]">
+              Total Market Cap
+            </div>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="text-[44px] font-[700] leading-[1] color-[#FFF]">
+                $<%= (data.totalMarketCap/1e12).toFixed(2) %>T
+              </div>
+              <% if (data.marketCapChangePct >= 0) { %>
+              <div
+                class="pill-green px-2 py-1 rounded-[42px] text-[22px] text-[#4ADF88] flex items-center gap-2 w-max"
+                style="background: rgba(33, 255, 99, 0.1)"
+              >
+                <img
+                  src="/assets/icons/up.svg"
+                  alt="BTC"
+                  class="w-[20px] h-[20px]"
+                />
+                <span>+<%= (data.marketCapChangePct*100).toFixed(1) %>%</span>
+              </div>
+              <% } else { %>
+              <div
+                class="pill-red px-2 py-1 rounded-[42px] text-[22px] text-[#FF5C5C] flex items-center gap-2 w-max"
+                style="background: rgba(255, 93, 93, 0.26)"
+              >
+                <img
+                  src="/assets/icons/down.svg"
+                  alt="BTC"
+                  class="w-[25px] h-[25px]"
+                />
+                <span><%= (data.marketCapChangePct*100).toFixed(1) %>%</span>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="text-[28px] font-[400] leading-[1] color-[#C7C7D7]">
+              Market Volume 24h
+            </div>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="text-[44px] font-[700] leading-[1] color-[#FFF]">
+                <%= (data.volume24h/1e9).toFixed(1) %>B
+              </div>
+              <% if (data.volumeChangePct >= 0) { %>
+              <div
+                class="pill-green px-2 py-1 rounded-[42px] text-[22px] text-[#4ADF88] flex items-center gap-2 w-max"
+                style="background: rgba(33, 255, 99, 0.1)"
+              >
+                <img
+                  src="/assets/icons/up.svg"
+                  alt="BTC"
+                  class="w-[20px] h-[20px]"
+                />
+                <span>+<%= (data.volumeChangePct*100).toFixed(0) %>%</span>
+              </div>
+              <% } else { %>
+              <div
+                class="pill-red px-2 py-1 rounded-[42px] text-[22px] text-[#FF5C5C] flex items-center gap-2 w-max"
+                style="background: rgba(255, 93, 93, 0.26)"
+              >
+                <img
+                  src="/assets/icons/down.svg"
+                  alt="BTC"
+                  class="w-[20px] h-[20px]"
+                />
+                <span><%= (data.volumeChangePct*100).toFixed(0) %>%</span>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="flex items-center gap-2">
+              <img
+                src="/assets/icons/btc.png"
+                alt="BTC"
+                class="w-[40px] h-[40px] rounded-full"
+              />
+              <div class="text-[28px] font-[400] leading-[1] color-[#C7C7D7]">
+                BTC Dominance
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 mt-6">
+              <div class="text-[44px] font-[700] leading-[1] color-[#FFF]">
+                <%= data.btcDom.toFixed(0) %>%
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="glass rounded-[31px] p-[38px]"
+            style="
+              background: rgba(0, 0, 0, 0.5);
+              border: 1px solid rgba(197, 197, 255, 0.2);
+            "
+          >
+            <div class="flex items-center gap-2">
+              <img
+                src="/assets/icons/eth.png"
+                alt="BTC"
+                class="w-[40px] h-[40px] rounded-full"
+              />
+              <div class="text-[28px] font-[400] leading-[1] color-[#C7C7D7]">
+                ETH Dominance
+              </div>
+            </div>
+            <div class="flex items-center gap-3 mt-6">
+              <div class="text-[44px] font-[700] leading-[1] color-[#FFF]">
+                <%= data.ethDom.toFixed(2) %>%
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-4 glass">
+          <div class="space-y-2">
+            <% data.coins.slice(0,8).forEach(c => { %>
+            <div
+              class="flex items-center justify-between bg-black/20 rounded-[20px] p-3"
+              style="
+                background: rgba(0, 0, 0, 0.5);
+                border: 1px solid rgba(197, 197, 255, 0.2);
+              "
+            >
+              <div class="flex items-center gap-3">
+                <img
+                  src="/assets/icons/<%= c.symbol.toLowerCase() %>.png"
+                  alt="<%= c.symbol %>"
+                  class="w-[60px] h-[60px] rounded-xl"
+                />
+                <div>
+                  <div class="text-[28px] font-semibold text-[#FFF]">
+                    <%= c.symbol %>
+                  </div>
+                  <div class="text-[18px] text-[#C7C7D7] leading-[1]">
+                    <%= c.name %>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div
+                  class="font-semibold text-[26px] text-[#FFF] font-[700] leading-[1]"
+                >
+                  $<%=
+                  c.price.toLocaleString(undefined,{maximumFractionDigits:2}) %>
+                </div>
+                <% if (c.changePct >= 0) { %>
+                <div
+                  class="text-[16px] pill-green inline-block px-2 py-0.5 rounded-full mt-1 text-[#4ADF88] flex items-center gap-1 w-max ml-auto"
+                  style="background: rgba(33, 255, 99, 0.1)"
+                >
+                  <img
+                    src="/assets/icons/up.svg"
+                    alt="BTC"
+                    class="w-[20px] h-[20px]"
+                  />
+                  <span>+<%= (c.changePct*100).toFixed(2) %>%</span>
+                </div>
+                <% } else { %>
+                <div
+                  class="text-[16px] pill-red inline-block px-2 py-0.5 rounded-full mt-1 text-[#FF5C5C] flex items-center gap-1 w-max ml-auto"
+                  style="background: rgba(255, 93, 93, 0.26)"
+                >
+                  <img
+                    src="/assets/icons/down.svg"
+                    alt="BTC"
+                    class="w-[20px] h-[20px]"
+                  />
+                  <span><%= (c.changePct*100).toFixed(2) %>%</span>
+                </div>
+                <% } %>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

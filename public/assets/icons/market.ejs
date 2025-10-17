@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0b0d14;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      .card-outer {
+        background: radial-gradient(
+            1000px 600px at 10% 10%,
+            rgba(62, 69, 119, 0.25),
+            transparent 60%
+          ),
+          radial-gradient(
+            700px 400px at 90% 20%,
+            rgba(24, 26, 48, 0.8),
+            transparent 70%
+          ),
+          #0b0d14;
+      }
+      .glass {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3) inset;
+      }
+      .tag {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .pill-red {
+        background: rgba(189, 47, 56, 0.22);
+        border: 1px solid rgba(189, 47, 56, 0.35);
+      }
+      .pill-green {
+        background: rgba(34, 197, 94, 0.18);
+        border: 1px solid rgba(34, 197, 94, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="card"
+      class="card-outer w-[1100px] h-[640px] rounded-[12px] p-4 text-white relative overflow-hidden"
+    >
+      <div
+        class="flex items-center gap-2 text-lg font-semibold justify-between"
+      >
+        <img
+          src="<%= icons['btc'] || icons['logo'] || '' %>"
+          alt="BTC"
+          class="w-6 h-6 rounded-full opacity-80"
+        />
+        <h1
+          class="text-center text-[32px] leading-none"
+          style="
+            background: linear-gradient(
+              219deg,
+              #fff 48.84%,
+              #65657c 115.29%,
+              #25232e 207.66%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Market Overview
+        </h1>
+        <div
+          class="flex items-center gap-1 bg-white/5 rounded-full px-3 py-1 border border-white/10"
+        >
+          <span class="text-xs opacity-80"><%= data.date %></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3 mt-4">
+        <!-- LEFT -->
+        <div class="col-span-5 space-y-3">
+          <div class="glass rounded-xl p-3">
+            <div class="flex items-center justify-between">
+              <div class="text-base opacity-80">Fear Greed</div>
+              <div class="text-xs opacity-60">/ 100</div>
+            </div>
+            <div class="mt-2 flex items-end gap-1">
+              <div class="text-3xl font-extrabold text-red-400">
+                <%= data.fearGreed %>
+              </div>
+              <div class="opacity-60 mb-1 text-xs">/ 100</div>
+            </div>
+            <div class="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div
+                class="h-full bg-gradient-to-r from-red-500 via-yellow-400 to-green-400"
+                style="width: <%= data.fearGreed %>%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-3">
+            <div class="flex items-center justify-between">
+              <div class="text-base opacity-80">Alt Season</div>
+            </div>
+            <div class="mt-2 flex items-end gap-1">
+              <div class="text-3xl font-extrabold text-indigo-300">
+                <%= data.altSeason %>
+              </div>
+              <div class="opacity-60 mb-1 text-xs">/ 100</div>
+            </div>
+            <div class="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div
+                class="h-full bg-indigo-300/70"
+                style="width: <%= data.altSeason %>%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-3">
+            <div class="text-base font-semibold mb-1">AI Analysis</div>
+            <p class="text-xs opacity-80 leading-5">
+              The crypto market experienced a recent uptrend driven by inflows
+              from Bitcoin and Ethereum ETFs.
+            </p>
+          </div>
+        </div>
+
+        <!-- CENTER -->
+        <div class="col-span-4 space-y-3">
+          <div class="glass rounded-xl p-3">
+            <div class="opacity-70 text-base">Total Market Cap</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="text-3xl font-extrabold">
+                $<%= (data.totalMarketCap/1e12).toFixed(2) %>T
+              </div>
+              <% if (data.marketCapChangePct >= 0) { %>
+              <div class="pill-green px-2 py-0.5 rounded-full text-xs">
+                +<%= (data.marketCapChangePct*100).toFixed(1) %>%
+              </div>
+              <% } else { %>
+              <div class="pill-red px-2 py-0.5 rounded-full text-xs">
+                <%= (data.marketCapChangePct*100).toFixed(1) %>%
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-3">
+            <div class="opacity-70 text-base">Market Volume 24h</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="text-3xl font-extrabold">
+                <%= (data.volume24h/1e9).toFixed(1) %>B
+              </div>
+              <% if (data.volumeChangePct >= 0) { %>
+              <div class="pill-green px-2 py-0.5 rounded-full text-xs">
+                +<%= (data.volumeChangePct*100).toFixed(0) %>%
+              </div>
+              <% } else { %>
+              <div class="pill-red px-2 py-0.5 rounded-full text-xs">
+                <%= (data.volumeChangePct*100).toFixed(0) %>%
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-3">
+            <div class="opacity-70 text-base">BTC Dominance</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="text-3xl font-extrabold">
+                <%= data.btcDom.toFixed(0) %>%
+              </div>
+              <% if (data.btcDomChangePct >= 0) { %>
+              <div class="pill-green px-2 py-0.5 rounded-full text-xs">
+                +<%= (data.btcDomChangePct*100).toFixed(1) %>%
+              </div>
+              <% } else { %>
+              <div class="pill-red px-2 py-0.5 rounded-full text-xs">
+                <%= (data.btcDomChangePct*100).toFixed(1) %>%
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="glass rounded-xl p-3">
+            <div class="opacity-70 text-base">ETH Dominance</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="text-3xl font-extrabold">
+                <%= data.ethDom.toFixed(2) %>%
+              </div>
+              <% if (data.ethDomChangePct >= 0) { %>
+              <div class="pill-green px-2 py-0.5 rounded-full text-xs">
+                +<%= (data.ethDomChangePct*100).toFixed(2) %>%
+              </div>
+              <% } else { %>
+              <div class="pill-red px-2 py-0.5 rounded-full text-xs">
+                <%= (data.ethDomChangePct*100).toFixed(2) %>%
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-span-3 glass rounded-xl p-2">
+          <div class="space-y-1.5">
+            <% data.coins.slice(0,8).forEach(c => { %>
+            <div
+              class="flex items-center justify-between bg-black/20 rounded-lg p-2"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-lg bg-white/5 grid place-items-center text-sm"
+                >
+                  <%= c.icon || '₿' %>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold"><%= c.symbol %></div>
+                  <div class="text-[10px] opacity-60 -mt-0.5">
+                    <%= c.name %>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-semibold">
+                  $<%=
+                  c.price.toLocaleString(undefined,{maximumFractionDigits:2}) %>
+                </div>
+                <% if (c.changePct >= 0) { %>
+                <div
+                  class="text-[10px] pill-green inline-block px-1.5 py-0.5 rounded-full mt-0.5"
+                >
+                  +<%= (c.changePct*100).toFixed(2) %>%
+                </div>
+                <% } else { %>
+                <div
+                  class="text-[10px] pill-red inline-block px-1.5 py-0.5 rounded-full mt-0.5"
+                >
+                  <%= (c.changePct*100).toFixed(2) %>%
+                </div>
+                <% } %>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
